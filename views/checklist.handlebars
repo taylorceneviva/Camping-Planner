@@ -1,0 +1,158 @@
+{{!-- This file will hold the created checklist
+- Should grab checked equiptment from list submit button in location.handlebars
+- Send Email feild
+
+--}}
+<style>
+    /*navbar style*/
+    .navbar {
+        background-color: #bc674d;
+    }
+
+    .navbar-item {
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
+        font-size: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .navbar-toggler {
+        background-color: #734338;
+    }
+
+    #selection {
+        float: right;
+    }
+
+    .row {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .card {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        background: rgba(255, 255, 255, 0.829);
+        font-size: 18px;
+        color: #734338;
+        border-radius: 15px;
+
+    }
+
+    .card-header {
+        font-family: 'Yusei Magic', sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .header-size {
+        font-size: 30px;
+        color: #84815D;
+    }
+
+    #backbutton {
+        background-color: #DBB99C;
+
+    }
+
+    .btn-blu,
+    #btn-blu {
+        float: left;
+        background-color: #a3cfd9;
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
+        font-size: 18px;
+    }
+
+    .float {
+        float: right;
+    }
+
+    .margin {
+        margin-top: 20px;
+    }
+
+    /* footer */
+    .footer {
+        color: black;
+    }
+
+    footer {
+        margin-top: 100px;
+        background: rgba(255, 255, 255, 0.637);
+
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header header-size">Your Personalized Checklist</div>
+                <div class="card-header"> <span style="margin:5px">Please return to previous page to update your
+                        checklist.&nbsp;</span>
+                    <div class="card-header margin"><span style="margin:5px">&nbsp;</span><button id="backbutton"
+                            onclick="window.print()">Print this page</button>
+                        <input id="backbutton" action="action" type="button" value="Back"
+                            onclick="window.history.go(-1); return false;" />
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <ul id="list-group" class="list-group list-group-flush">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<script>
+    function saveList() {
+        // loop through the list items and only get return the items that are not checked.
+        equipmentListSelected = $("#list-group>li").map(function () {
+            let o = this;
+            let isSelected = o.querySelector('input[type=checkbox]').checked;
+            if (!isSelected) {
+                return Object.keys(o.dataset).reduce(
+                    function (returnValue, dsValue) {
+                        returnValue[dsValue] = o.dataset[dsValue];
+                        return returnValue;
+                    },
+                    {}
+                )
+            }
+        }).get();
+        //console.log(result);
+        // put the final list in local storage for the next page.
+
+        let lsKeyName = "itemList";
+        if (localStorage.getItem(lsKeyName) !== null) {
+            localStorage.removeItem(lsKeyName)
+        }
+
+        localStorage.setItem(lsKeyName, JSON.stringify(equipmentListSelected));
+    }
+
+    $("#checklist").click((e) => {
+        saveList();
+        let url = window.location.pathname + "/" + "checklist";
+        window.location.replace(url);
+    });
+</script>
+<script type="text/javascript">
+    var itemsSelectedJSON = localStorage.getItem('itemList');
+    itemsSelected = JSON.parse(itemsSelectedJSON);
+
+    var equipmentHtmlContainer = "";
+
+    itemsSelected.forEach(item => {
+        equipmentHtmlContainer += `</i><li data-item=${item.itemname}>${item.itemname}</li>`
+    });
+
+    document.getElementById("list-group").innerHTML += equipmentHtmlContainer;
+</script>

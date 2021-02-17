@@ -1,0 +1,82 @@
+/* sign up */
+form.signup,
+form.login {
+  margin-top: 80px;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #bc674d;
+}
+
+.navbar-item {
+  color: white;
+  font-family: "Yusei Magic", sans-serif;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.navbar-toggler {
+  background-color: #734338;
+  color: white;
+}
+/* Buttons */
+.button {
+  background-color: #734338;
+  color: white;
+  font-family: "Yusei Magic", sans-serif;
+}
+
+.btn-blu {
+  background-color: #a3cfd9;
+  color: white;
+  font-family: "Yusei Magic", sans-serif;
+}
+
+h1 {
+  font-family: "Yusei Magic", sans-serif;
+  font-size: 80px;
+  color: #734338;
+  text-align: center;
+}
+
+.jumbotron {
+  background-color: #dbb99cc0;
+  height: 210px;
+}
+
+h3,
+strong {
+  text-align: center;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 30px;
+}
+h2 {
+  text-align: center;
+  color: #bc674d;
+}
+
+html,
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top;
+  background-image: url(/images/national-park-wallpaper-collection-hd-7420.jpeg);
+  width: 100%;
+  height: 100%;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+.col-md-4,
+.col-md-6 {
+  background: rgb(255, 255, 255, 0.9);
+  border-radius: 15px;
+  margin-bottom: 50px;
+}
+

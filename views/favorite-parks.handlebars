@@ -1,0 +1,115 @@
+<style>
+    .overflow-auto {
+        width: 400px;
+        height: 200px;
+    }
+
+    h2,
+    h1 {
+        margin: 10px;
+        text-align: center;
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
+
+    }
+
+    h1 {
+        margin-top: 100px;
+        font-size: 30px;
+    }
+
+    .overflow-auto {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .list-group-item {
+        background: rgba(255, 255, 255, 0.637);
+        color: #734338;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    /*navbar style*/
+    .navbar {
+        background-color: #bc674d;
+    }
+
+    .navbar-item {
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
+        font-size: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .navbar-toggler {
+        background-color: #734338;
+    }
+
+    /* Buttons */
+    .button {
+        background-color: #734338;
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
+    }
+
+    .btn-blu {
+        background-color: #a3cfd9;
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
+    }
+
+    .list-group {
+        font-family: 'Yusei Magic', sans-serif;
+
+    }
+
+    .center {
+        width: 400px;
+        height: 300px;
+    }
+
+    .margin {
+        margin-top: 30px;
+    }
+
+    /* footer */
+    .footer {
+        color: black;
+    }
+
+    footer {
+        position: fixed;
+        margin-top: 100px;
+        background: rgba(255, 255, 255, 0.637);
+        bottom: 0px;
+        width: 100%;
+    }
+</style>
+<div class="container background ">
+    <div class="row" "overflow-auto">
+        <h2>Your Favorite Locations!</h2>
+
+        <div class="col-md-8 offset-md-4">
+            <ul class="list-group overflow-scroll margin scroll center">
+                {{#each favoriteParks}}
+                <li class="list-group-item" value={{LocationId}}>{{locationName}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="container background">
+        </div>
+    </div>
+</div>
+<script>
+    $(".list-group-item").click((e) => {
+        console.log(e);
+        parkId = e.currentTarget.attributes[1].value;
+        let url = "locations/favorite/" + parkId;
+        window.location.replace(url);
+    });
+</script>
